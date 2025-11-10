@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virat Kohli - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #000;
+        }
+        
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(220, 20, 60, 0.9), rgba(139, 0, 0, 0.95)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23dc143c" width="1200" height="800"/><circle fill="%23ffffff" opacity="0.1" cx="300" cy="200" r="150"/><circle fill="%23ffffff" opacity="0.1" cx="900" cy="600" r="200"/></svg>');
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '18';
+            position: absolute;
+            font-size: 25rem;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.05);
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            animation: fadeInDown 1s ease;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero .title {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+        
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.7s both;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-item .number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        
+        .stat-item .label {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            background: #0a0a0a;
+        }
+        
+        .section {
+            margin: 4rem 0;
+        }
+        
+        .section h2 {
+            font-size: 2.5rem;
+            color: #dc143c;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, #dc143c, #ffd700);
+        }
+        
+        .about-content {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a0a0a 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border-left: 5px solid #dc143c;
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            line-height: 1.9;
+        }
+        
+        .records-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .record-card {
+            background: linear-gradient(135deg, #dc143c 0%, #8b0000 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            color: white;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .record-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(220, 20, 60, 0.4);
+            border-color: #ffd700;
+        }
+        
+        .record-card h3 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .record-card ul {
+            list-style: none;
+        }
+        
+        .record-card ul li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .record-card ul li:last-child {
+            border-bottom: none;
+        }
+        
+        .achievements {
+            background: #1a1a1a;
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+        
+        .achievements-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .achievement-item {
+            background: linear-gradient(135deg, #2a0a0a 0%, #1a1a1a 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #dc143c;
+            color: #e0e0e0;
+        }
+        
+        .achievement-item h4 {
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+            padding-bottom: 2rem;
+            border-left: 3px solid #dc143c;
+            margin-left: 1rem;
+            color: #e0e0e0;
+        }
+        
+        .timeline-item:last-child {
+            border-left: none;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -11px;
+            top: 0;
+            width: 18px;
+            height: 18px;
+            background: #ffd700;
+            border-radius: 50%;
+            border: 4px solid #0a0a0a;
+        }
+        
+        .timeline-item .year {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #dc143c;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #dc143c 0%, #8b0000 100%);
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            font-size: 1.5rem;
+            font-style: italic;
+            position: relative;
+            margin-top: 3rem;
+        }
+        
+        .quote-box::before,
+        .quote-box::after {
+            content: '"';
+            font-size: 6rem;
+            color: rgba(255, 255, 255, 0.2);
+            position: absolute;
+        }
+        
+        .quote-box::before {
+            top: 10px;
+            left: 20px;
+        }
+        
+        .quote-box::after {
+            bottom: -20px;
+            right: 20px;
+        }
+        
+        .legacy {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a0a0a 100%);
+            padding: 3rem;
+            border-radius: 15px;
+            margin-top: 3rem;
+            border: 2px solid #dc143c;
+            color: #e0e0e0;
+        }
+        
+        .legacy h3 {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>VIRAT KOHLI</h1>
+            <div class="title">"King Kohli" | #18</div>
+            <div class="subtitle">Former Indian Cricket Captain | Chase Master</div>
+            
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="number">80</div>
+                    <div class="label">International Centuries</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">26,000+</div>
+                    <div class="label">International Runs</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">50+</div>
+                    <div class="label">Average Across Formats</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <section class="section">
+            <h2>About the Legend</h2>
+            <div class="about-content">
+                <p>
+                    Virat Kohli is widely regarded as one of the greatest batsmen in cricket history. Known for his aggressive approach, incredible consistency, and unmatched chase records, Kohli has redefined modern batting across all formats. His passion, intensity, and fitness standards have set new benchmarks for cricketers worldwide. As India's captain from 2017-2022, he led the team to historic Test series victories and transformed Indian cricket with his aggressive brand of play. His ability to chase down targets and score runs in pressure situations has earned him the title "Chase Master."
+                </p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>Record-Breaking Career</h2>
+            <div class="records-grid">
+                <div class="record-card">
+                    <h3>🏏 ODI Supremacy</h3>
+                    <ul>
+                        <li>• 50 ODI centuries - Fastest to reach this milestone</li>
+                        <li>• Highest average while chasing (over 65)</li>
+                        <li>• Most runs in successful ODI chases</li>
+                        <li>• 27 centuries while chasing</li>
+                        <li>• 13,000+ ODI runs</li>
+                    </ul>
+                </div>
+                <div class="record-card">
+                    <h3>🌟 Test Cricket Excellence</h3>
+                    <ul>
+                        <li>• 29 Test centuries</li>
+                        <li>• 8,000+ Test runs</li>
+                        <li>• Most successful Indian Test captain</li>
+                        <li>• Double centuries in Australia, England, West Indies</li>
+                        <li>• 7 double hundreds in Tests</li>
+                    </ul>
+                </div>
+                <div class="record-card">
+                    <h3>⚡ T20 Mastery</h3>
+                    <ul>
+                        <li>• Highest run-scorer in T20 World Cups</li>
+                        <li>• Most T20I runs (4000+)</li>
+                        <li>• Only player with 4 T20 World Cup centuries</li>
+                        <li>• Player of Tournament - 2014 & 2016 T20 WC</li>
+                        <li>• T20 World Cup 2024 Winner</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>Awards & Achievements</h2>
+            <div class="achievements">
+                <div class="achievements-list">
+                    <div class="achievement-item">
+                        <h4>🏆 ICC Awards</h4>
+                        <p>ICC Cricketer of the Year (2017, 2018)<br>ICC ODI Player of the Year (Multiple times)<br>ICC Test Player of the Year</p>
+                    </div>
+                    <div class="achievement-item">
+                        <h4>🇮🇳 National Honors</h4>
+                        <p>Rajiv Gandhi Khel Ratna (2018)<br>Arjuna Award (2013)<br>Padma Shri (2017)</p>
+                    </div>
+                    <div class="achievement-item">
+                        <h4>🎖️ Special Recognition</h4>
+                        <p>Wisden Leading Cricketer (5 times)<br>Sir Garfield Sobers Trophy<br>ICC Spirit of Cricket Award</p>
+                    </div>
+                    <div class="achievement-item">
+                        <h4>📊 Milestones</h4>
+                        <p>Fastest to 8,000, 9,000, 10,000, 11,000, 12,000 ODI runs<br>26,000+ international runs<br>80+ international centuries</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>Career Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="year">2008</div>
+                    <p>Made ODI debut for India against Sri Lanka. Scored 12 runs in first innings.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2011</div>
+                    <p>Part of ICC Cricket World Cup winning squad. Crucial performances in knockout stages.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2013</div>
+                    <p>Appointed vice-captain of Indian cricket team across formats.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2014</div>
+                    <p>Became the fastest batsman to reach 6,000 ODI runs. Four centuries in Australia.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2016</div>
+                    <p>Record-breaking IPL season - 973 runs. Player of the Tournament in T20 World Cup.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2017</div>
+                    <p>Appointed full-time captain of Indian cricket team across all three formats.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2018-2019</div>
+                    <p>Historic Test series victories in Australia. Led India to No.1 Test ranking.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2023</div>
+                    <p>Broke Sachin Tendulkar's record of 49 ODI centuries. Reached 50 ODI hundreds in World Cup.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2024</div>
+                    <p>Won T20 World Cup with India. Announced retirement from T20 Internationals.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="quote-box">
+                Self-belief and hard work will always earn you success. Never give up on your dreams.
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="legacy">
+                <h3>Legacy & Impact</h3>
+                <p style="font-size: 1.1rem; line-height: 1.9; margin-top: 1rem;">
+                    Virat Kohli's impact transcends statistics. He revolutionized fitness standards in Indian cricket, inspired a generation of cricketers with his aggressive mindset, and became a global icon representing excellence and passion. His chase mastery in ODIs is unparalleled, and his ability to perform under pressure has made him one of the most feared batsmen in cricket history. From the U-19 World Cup winning captain in 2008 to becoming India's most successful Test captain and one of the greatest batsmen ever, Kohli's journey embodies dedication, passion, and an unwavering commitment to excellence.
+                </p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
