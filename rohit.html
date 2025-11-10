@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohit Sharma - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #000;
+        }
+        
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 102, 204, 0.9), rgba(0, 61, 122, 0.95)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%230066cc" width="1200" height="800"/><circle fill="%23ffffff" opacity="0.1" cx="300" cy="200" r="150"/><circle fill="%23ffffff" opacity="0.1" cx="900" cy="600" r="200"/></svg>');
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '45';
+            position: absolute;
+            font-size: 25rem;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.05);
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            animation: fadeInDown 1s ease;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero .title {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+        
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.7s both;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-item .number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        
+        .stat-item .label {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            background: #0a0a0a;
+        }
+        
+        .section {
+            margin: 4rem 0;
+        }
+        
+        .section h2 {
+            font-size: 2.5rem;
+            color: #0066cc;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, #0066cc, #ffd700);
+        }
+        
+        .about-content {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a1a2a 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border-left: 5px solid #0066cc;
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            line-height: 1.9;
+        }
+        
+        .records-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .record-card {
+            background: linear-gradient(135deg, #0066cc 0%, #003d7a 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            color: white;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .record-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 102, 204, 0.4);
+            border-color: #ffd700;
+        }
+        
+        .record-card h3 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .record-card ul {
+            list-style: none;
+        }
+        
+        .record-card ul li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .record-card ul li:last-child {
+            border-bottom: none;
+        }
+        
+        .achievements {
+            background: #1a1a1a;
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+        
+        .achievements-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .achievement-item {
+            background: linear-gradient(135deg, #0a1a2a 0%, #1a1a1a 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #0066cc;
+            color: #e0e0e0;
+        }
+        
+        .achievement-item h4 {
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+            padding-bottom: 2rem;
+            border-left: 3px solid #0066cc;
+            margin-left: 1rem;
+            color: #e0e0e0;
+        }
+        
+        .timeline-item:last-child {
+            border-left: none;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -11px;
+            top: 0;
+            width: 18px;
+            height: 18px;
+            background: #ffd700;
+            border-radius: 50%;
+            border: 4px solid #0a0a0a;
+        }
+        
+        .timeline-item .year {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0066cc;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, #0066cc 0%, #003d7a 100%);
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            font-size: 1.5rem;
+            font-style: italic;
+            position: relative;
+            margin-top: 3rem;
+        }
+        
+        .quote-box::before,
+        .quote-box::after {
+            content: '"';
+            font-size: 6rem;
+            color: rgba(255, 255, 255, 0.2);
+            position: absolute;
+        }
+        
+        .quote-box::before {
+            top: 10px;
+            left: 20px;
+        }
+        
+        .quote-box::after {
+            bottom: -20px;
+            right: 20px;
+        }
+        
+        .legacy {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a1a2a 100%);
+            padding: 3rem;
+            border-radius: 15px;
+            margin-top: 3rem;
+            border: 2px solid #0066cc;
+            color: #e0e0e0;
+        }
+        
+        .legacy h3 {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>ROHIT SHARMA</h1>
+            <div class="title">"The Hitman" | #45</div>
+            <div class="subtitle">Indian Cricket Captain | Opening Batsman</div>
+            
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="number">3</div>
+                    <div class="label">ODI Double Hundreds</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">18,000+</div>
+                    <div class="label">International Runs</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">5</div>
+                    <div class="label">IPL Titles</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <section class="section">
+            <h2>About the Legend</h2>
+            <div class="about-content">
+                <p>
+                    Rohit Sharma, fondly known as "The Hitman," is one of the most elegant and destructive batsmen in modern cricket. Currently serving as India's captain across all formats, Rohit has revolutionized the art of opening batting with his ability to convert starts into massive hundreds. His record three double centuries in ODI cricket remain unmatched, showcasing his ability to pace an innings perfectly. As the most successful captain in IPL history with five titles for Mumbai Indians, Rohit combines tactical brilliance with a calm demeanor. His six-hitting prowess and ability to score big runs in crucial matches make him one of the most feared batsmen in world cricket.
+                </p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>Record-Breaking Career</h2>
+            <div class="records-grid">
+                <div class="record-card">
+                    <h3>🏏 ODI Mastery</h3>
+                    <ul>
+                        <li>• Only player with 3 ODI double hundreds (209, 264, 208*)</li>
+                        <li>• Highest individual ODI score - 264 vs Sri Lanka</li>
+                        <li>• 5 centuries in single World Cup (2019)</li>
+                        <li>• 31 ODI centuries</li>
+                        <li>• 10,000+ ODI runs</li>
+                    </ul>
+                </div>
+                <div class="record-card">
+                    <h3>⚡ T20 Excellence</h3>
+                    <ul>
+                        <li>• Most sixes in T20 Internationals (190+)</li>
+                        <li>• 4 T20I centuries (joint-most)</li>
+                        <li>• Fastest T20I century by an Indian (35 balls)</li>
+                        <li>• 4,000+ T20I runs</li>
+                        <li>• T20 World Cup 2024 Winner as Captain</li>
+                    </ul>
+                </div>
+                <div class="record-card">
+                    <h3>🏆 IPL Supremacy</h3>
+                    <ul>
+                        <li>• Most successful IPL captain - 5 titles</li>
+                        <li>• 6,600+ IPL runs</li>
+                        <li>• 2 IPL centuries</li>
+                        <li>• Led Mumbai Indians to unprecedented success</li>
+                        <li>• IPL's most capped player</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>Awards & Achievements</h2>
+            <div class="achievements">
+                <div class="achievements-list">
+                    <div class="achievement-item">
+                        <h4>🏆 ICC Honors</h4>
+                        <p>ICC ODI Team of the Year (Multiple times)<br>ICC Champions Trophy 2013 Winner<br>T20 World Cup 2024 Winner</p>
+                    </div>
+                    <div class="achievement-item">
+                        <h4>🇮🇳 National Recognition</h4>
+                        <p>Rajiv Gandhi Khel Ratna Award (2020)<br>Arjuna Award (2015)<br>Major Dhyan Chand Khel Ratna</p>
+                    </div>
+                    <div class="achievement-item">
+                        <h4>🎖️ Special Achievements</h4>
+                        <p>Asia Cup Winner (Multiple times)<br>Wisden Cricketer of the Year<br>ICC Spirit of Cricket Award</p>
+                    </div>
+                    <div class="achievement-item">
+                        <h4>📊 Milestones</h4>
+                        <p>18,000+ international runs<br>48+ international centuries<br>500+ international sixes</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>Career Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="year">2007</div>
+                    <p>Made international debut for India in ODI cricket against Ireland.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2013</div>
+                    <p>First ODI double hundred - 209 vs Australia. Won ICC Champions Trophy.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2013</div>
+                    <p>Became Mumbai Indians captain. Led team to first IPL title.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2014</div>
+                    <p>Record-breaking 264 vs Sri Lanka - highest individual ODI score in history.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2015-2020</div>
+                    <p>Led Mumbai Indians to 4 more IPL titles (2015, 2017, 2019, 2020).</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2019</div>
+                    <p>Joint-most centuries (5) in a single World Cup alongside Kumar Sangakkara.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2021</div>
+                    <p>Appointed India's T20I captain, later became captain across all formats.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2022</div>
+                    <p>Became full-time captain of Indian cricket team in all three formats.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2024</div>
+                    <p>Led India to T20 World Cup victory. Announced retirement from T20 Internationals.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="quote-box">
+                Talent is God-given. Be humble. Fame is man-given. Be grateful. Conceit is self-given. Be careful.
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="legacy">
+                <h3>Legacy & Impact</h3>
+                <p style="font-size: 1.1rem; line-height: 1.9; margin-top: 1rem;">
+                    Rohit Sharma's impact on cricket extends far beyond his remarkable statistics. He has redefined what it means to be an opening batsman in limited-overs cricket, showing that patience and aggression can coexist beautifully. His ability to accelerate after building a platform has resulted in some of the biggest individual scores in ODI history. As a captain, his calm demeanor and tactical acumen have made him one of the most successful leaders in cricket history, particularly in franchise cricket. His journey from a talented youngster to India's captain across all formats is a testament to his dedication, adaptability, and match-winning ability. The "Hitman" continues to inspire millions with his elegant strokeplay and ability to dominate bowlers in the most stylish manner possible.
+                </p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
